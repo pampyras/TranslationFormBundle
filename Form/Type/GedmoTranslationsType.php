@@ -12,7 +12,7 @@ use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormView,
     Symfony\Component\Form\FormInterface,
     Symfony\Component\OptionsResolver\Options;
-
+use A2lix\TranslationFormBundle\Form\Type\GedmoTranslationsLocalesType;
 /**
  * Regroup by locales, all translations fields (gedmo)
  *
@@ -55,13 +55,13 @@ class GedmoTranslationsType extends AbstractType
             $childrenOptions = $this->translationForm->getChildrenOptions($options['translatable_class'], $options);
             $defaultLocale = (array) $this->translationForm->getGedmoTranslatableListener()->getDefaultLocale();
 
-            $builder->add('defaultLocale', 'a2lix_translationsLocales_gedmo', array(
+            $builder->add('defaultLocale', GedmoTranslationsLocalesType::class, array(
                 'locales' => $defaultLocale,
                 'fields_options' => $childrenOptions,
                 'inherit_data' => true,
             ));
 
-            $builder->add($builder->getName(), 'a2lix_translationsLocales_gedmo', array(
+            $builder->add($builder->getName(), GedmoTranslationsLocalesType::class, array(
                 'locales' => array_diff($options['locales'], $defaultLocale),
                 'fields_options' => $childrenOptions,
                 'inherit_data' => false,

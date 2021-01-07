@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType,
     Symfony\Component\OptionsResolver\OptionsResolver,
     Symfony\Component\OptionsResolver\OptionsResolverInterface,
     A2lix\TranslationFormBundle\Form\DataMapper\GedmoTranslationMapper;
+use A2lix\TranslationFormBundle\Form\Type\TranslationsFieldsType;
 
 /**
  * Translations locales (gedmo)
@@ -26,7 +27,7 @@ class GedmoTranslationsLocalesType extends AbstractType
 
         foreach ($options['locales'] as $locale) {
             if (isset($options['fields_options'][$locale])) {
-                $builder->add($locale, 'a2lix_translationsFields', array(
+                $builder->add($locale, TranslationsFieldsType::class, array(
                     'fields' => $options['fields_options'][$locale],
                     'translation_class' => $options['translation_class'],
                     'inherit_data' => $isDefaultTranslation,

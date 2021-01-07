@@ -89,7 +89,7 @@ abstract class TranslationForm implements TranslationFormInterface
         }
 
         if (!isset($options['max_length']) && ($maxLengthGuess = $guesser->guessMaxLength($class, $property))) {
-            $options['max_length'] = $maxLengthGuess->getValue();
+            //$options['max_length'] = $maxLengthGuess->getValue();
         }
 
         return $options;
