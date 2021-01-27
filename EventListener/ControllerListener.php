@@ -7,6 +7,8 @@ use Doctrine\Common\Annotations\Reader,
     Symfony\Component\HttpKernel\Event\FilterControllerEvent,
     Doctrine\Common\Util\ClassUtils;
 
+use Symfony\Component\HttpKernel\Controller\ErrorController;
+
 class ControllerListener
 {
     protected $annotationReader;
@@ -21,6 +23,12 @@ class ControllerListener
     public function onKernelController(FilterControllerEvent $event)
     {
         $controller = $event->getController();
+        
+        $controller = $event->getController();
+        if (is_object($controller) && get_class($controller) == ErrorController::class){
+            return false;
+        }
+        
         list($object, $method) = $controller;
 
         $className = ClassUtils::getClass($object);
