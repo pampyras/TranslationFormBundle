@@ -67,10 +67,10 @@ class GedmoTranslationMapper implements DataMapperInterface
                     $newData->add($existingTranslation);
 
                 } else {
-                    $translation = new $translationClass();
-                    $translation->setLocale($locale);
-                    $translation->setField($field);
-                    $translation->setContent($content);
+                    $translation = new $translationClass($locale, $field, $content);
+                    //$translation->setLocale($locale);
+                    //$translation->setField($field);
+                    //$translation->setContent($content);
                     $newData->add($translation);
                 }
             }
