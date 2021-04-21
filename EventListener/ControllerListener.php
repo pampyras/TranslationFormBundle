@@ -8,6 +8,7 @@ use Doctrine\Common\Annotations\Reader,
     Doctrine\Common\Util\ClassUtils;
 
 use Symfony\Component\HttpKernel\Controller\ErrorController;
+use Nelmio\ApiDocBundle\Controller\SwaggerUiController;
 
 class ControllerListener
 {
@@ -25,7 +26,7 @@ class ControllerListener
         $controller = $event->getController();
         
         $controller = $event->getController();
-        if (is_object($controller) && get_class($controller) == ErrorController::class){
+        if (is_object($controller) && (get_class($controller) == ErrorController::class || get_class($controller) == SwaggerUiController::class)){
             return false;
         }
         
